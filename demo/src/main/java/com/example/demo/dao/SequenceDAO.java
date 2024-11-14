@@ -1,30 +1,19 @@
 package com.example.demo.dao;
 
-import com.example.demo.entity.Book;
-import com.example.demo.entity.EntityIdentifier;
-import com.example.demo.entity.SequenceData;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
 public class SequenceDAO {
-    private static final String jdbcUrl = "jdbc:postgresql://localhost:54320/postgres";
-    private static final String username = "postgres";
+//    private static final String jdbcUrl = "jdbc:postgresql://localhost:54320/postgres";
+    private static final String jdbcUrl = "jdbc:postgresql://postgres:5432/postgres";
+    private static final String username = "docker_chad";
     private static final String password = "12345";
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final JdbcClient jdbcClient;
@@ -37,6 +26,7 @@ public class SequenceDAO {
         dataSource.setUrl(jdbcUrl);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
+//        dataSource.setSchema("library");
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
         this.jdbcClient = JdbcClient.create(dataSource);
         getData();
