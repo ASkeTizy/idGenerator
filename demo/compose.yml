@@ -10,7 +10,7 @@ services:
      - POSTGRES_PASSWORD=12345
      - POSTGRES_DB=postgres
     volumes:
-     - ./init:/docker-entrypoint-initdb.d
+
      - postgres:/var/lib/postgresql/data
     ports:
       - "127.0.0.1:54320:5432"
@@ -23,18 +23,18 @@ services:
     restart: always
 
 
-  api_service:
-    build: .
-
-    ports:
-      - "8080:8080"
-
-    environment:
-      - spring.datasource.url=jdbc:postgresql://postgres:5432/postgres
-#      - /basics?allowPublicKeyRetrieval=true
-    depends_on:
-       postgres:
-         condition: service_healthy
+#  api_service:
+#    build: .
+#
+#    ports:
+#      - "8080:8080"
+#
+#    environment:
+#      - spring.datasource.url=jdbc:postgresql://postgres:5432/postgres
+##      - /basics?allowPublicKeyRetrieval=true
+#    depends_on:
+#       postgres:
+#         condition: service_healthy
 
 #    volumes:
 #      - .m2:/root/.m2
